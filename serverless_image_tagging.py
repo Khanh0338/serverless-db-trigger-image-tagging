@@ -91,7 +91,7 @@ def serverless_trigger_handler(image_id, url):
         conn_b.commit()
         conn_b.close()
     except mysql.connector.Error as err:
-        print(f"  ❌ Lỗi đồng bộ Site B: {err}")
+        print(f"1 Lỗi đồng bộ Site B: {err}")
 
     return time.time() - start_time
 
@@ -239,7 +239,7 @@ def demo_loi_2_duplicate_trigger():
             print("  💡 Giải pháp: Dùng INSERT IGNORE hoặc ON DUPLICATE KEY UPDATE để idempotent.")
 
 # --------------------------------------------------
-# LỖI 3: Partial Failure — một số ảnh sync được, một số không
+# LỖI 3: Partial Failure — ông
 # --------------------------------------------------
 def demo_loi_3_partial_failure():
     separator("LỖI 3: Partial Failure — đồng bộ một phần")
@@ -305,7 +305,7 @@ def demo_loi_3_partial_failure():
     total_b = count_b.fetchone()[0]
     conn_b.close()
 
-    print(f"\n  📊 KẾT QUẢ CUỐI: Site A = {total_a} records | Site B = {total_b} records")
+    print(f"\n  KẾT QUẢ CUỐI: Site A = {total_a} records | Site B = {total_b} records")
     if total_a != total_b:
         print(f"  ⚠️  Mất đồng nhất! Chênh lệch {total_a - total_b} record.")
         print("  💡 Giải pháp: Reconciliation job định kỳ so sánh Site A vs Site B.")
@@ -340,7 +340,7 @@ def demo_loi_4_cold_start_timeout():
         inserted_id = cursor_a.lastrowid
 
         elapsed = serverless_trigger_handler(inserted_id, url)
-        status = "❄️  COLD" if i == 1 else "🔥 WARM"
+        status = "COLD" if i == 1 else "WARM"
         sla_ok = "✅ OK" if elapsed <= SLA_THRESHOLD else f"❌ VI PHẠM SLA (>{SLA_THRESHOLD}s)"
         print(f"  [Ảnh {i}] {status} | Thời gian: {elapsed:.3f}s | SLA: {sla_ok}")
 
@@ -411,7 +411,7 @@ def demo_loi_5_inconsistent_data():
     conn_b.close()
 
     null_count = sum(1 for r in rows if r[2] is None)
-    print(f"\n  📊 Site B: {len(rows)} records | {null_count} record có tags=NULL")
+    print(f"\n Site B: {len(rows)} records | {null_count} record có tags=NULL")
     if null_count > 0:
         print("  ⚠️  Dữ liệu không nhất quán: record tồn tại nhưng tags bị mất!")
         print("  💡 Giải pháp: Lưu trạng thái 'pending' và chạy re-tagging job sau.")

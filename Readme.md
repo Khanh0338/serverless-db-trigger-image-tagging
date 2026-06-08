@@ -70,31 +70,8 @@ Volume (Số ảnh)     Tổng thời gian (s)       Thời gian TB / Ảnh (s)
 50                  4.0510                   0.0810                   
 ```
 
-## 🏗️ Kiến trúc hệ thống
-
-```
-[Client / App]
-      │
-      │  INSERT url INTO Image_Metadata
-      ▼
-┌─────────────┐         DB Trigger          ┌──────────────────────────┐
-│   Site A    │ ─────────────────────────►  │  Serverless Function      │
-│ site_a_db   │                             │  (mock AWS Lambda)        │
-│             │                             │                           │
-│ Image_Meta  │                             │  1. Cold Start (~1.5s)    │
-│ (url, tags) │                             │  2. AI Tagging (~0.05s)   │
-└─────────────┘                             │  3. Sync to Site B        │
-                                            └──────────┬───────────────┘
-                                                       │
-                                                       │  INSERT (id, url, tags)
-                                                       ▼
-                                            ┌─────────────────┐
-                                            │    Site B        │
-                                            │  site_b_db       │
-                                            │                  │
-                                            │  Image_Meta      │
-                                            │  (id, url, tags) │
-                                            └─────────────────┘
+## Video demo
+Xem video minh họa các lỗi tại đây :https://drive.google.com/drive/folders/1XOcaWvoDh60lbwbHLWfnq8HLQ9WDOdvj?usp=sharing
 ```
 
 ## 👥 Tác giả
