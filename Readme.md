@@ -72,7 +72,7 @@ Volume (Số ảnh)     Tổng thời gian (s)       Thời gian TB / Ảnh (s)
 
 ## Video demo
 Xem video minh họa các lỗi tại đây :https://drive.google.com/drive/folders/1XOcaWvoDh60lbwbHLWfnq8HLQ9WDOdvj?usp=sharing
-```
+
 
 ## 👥 Tác giả
 
