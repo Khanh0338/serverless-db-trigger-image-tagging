@@ -67,6 +67,10 @@ Docker Compose sẽ tự động:
 - Build và chạy container **app** (Python), kết nối vào cùng `db_network`
 
 **4. Tương tác với chương trình:**
+chạy lệnh trên để tương tác
+```bash
+docker attach serverless_trigger_app
+```
 
 Sau khi các container khởi động, terminal sẽ hiển thị menu tương tác:
 
