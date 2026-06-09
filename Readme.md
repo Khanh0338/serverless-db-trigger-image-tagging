@@ -69,7 +69,7 @@ Docker Compose sẽ tự động:
 **4. Tương tác với chương trình:**
 chạy lệnh trên để tương tác
 ```bash
-docker attach serverless_trigger_app
+docker attach serverless_app
 ```
 
 Sau khi các container khởi động, terminal sẽ hiển thị menu tương tác:
